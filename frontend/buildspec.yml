@@ -1,0 +1,13 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - yarn install
+      - npm install -g @angular/cli
+  build:
+    commands:
+      - ng build --prod
+  post_build:
+    commands:
+      - aws s3 cp ./dist/dora-frontend s3://tw-dora-frontend --recursive
